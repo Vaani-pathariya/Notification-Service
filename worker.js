@@ -1,6 +1,6 @@
 const {Worker}=require('bullmq')
 const nodemailer = require('nodemailer');
-const REDIS_URL= 'redis://localhost:6379';
+const REDIS_URL= 'redis://redis:6379';
 require("dotenv").config();
 const sendEmail=async(data)=>{
     let transporter = nodemailer.createTransport({
