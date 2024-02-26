@@ -1,6 +1,5 @@
 const {Worker}=require('bullmq')
 const nodemailer = require('nodemailer');
-const REDIS_URL= 'redis://redis:6379';
 require("dotenv").config();
 const sendEmail=async(data)=>{
     let transporter = nodemailer.createTransport({
@@ -30,6 +29,9 @@ const worker = new Worker("email-queue",async(job)=>{
     await sendEmail(job.data);
     console.log("Email Sent");
 },{
-    connection: REDIS_URL,
+  connection:{
+    host:'redis',
+    port:6379
+}
 });
  

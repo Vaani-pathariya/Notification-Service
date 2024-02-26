@@ -1,6 +1,7 @@
-FROM node:latest
+FROM node:slim
+WORKDIR /app
 LABEL MAINTAINER="Vaani"
-COPY package*.json ./
+COPY package*.json .
 COPY . .
-RUN npm install 
-CMD ["./wait-for-it.sh", "redis:6379", "--", "npm", "start"]
+RUN npm ci
+CMD [ "npm", "start"]
