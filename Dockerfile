@@ -4,4 +4,5 @@ LABEL MAINTAINER="Vaani"
 COPY package*.json .
 COPY . .
 RUN npm ci
-CMD [ "npm", "start"]
+RUN npm install pm2 -g
+CMD ["sh", "-c", "npm start & pm2 start worker.js --no-daemon"]
